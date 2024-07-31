@@ -27,8 +27,9 @@ const Navigation = () => {
       <ul className="nav-links">
         <li key={'all'}>
           {/* These links should be NavLink component and add a special active class name if its an active link */}
-          <NavLink to="/"
-            className='nav-link'
+          <NavLink
+            to="/"
+            className={ ({isActive}) => `nav-link ${isActive ? 'nav-link-active' : ''}` }
           >
             All Pets
           </NavLink>
@@ -37,9 +38,10 @@ const Navigation = () => {
           ? petTypes.map((type) => (
               <li key={type.name}>
                 {/* These links should be NavLink component and add a special active class name if its an active link */}
-                <NavLink to={`/${type._links.self.href.split('/').pop()}`}
+                <NavLink 
+                  to={`/${type._links.self.href.split('/').pop()}`}
                   key={type.name}
-                  className='nav-link'               >
+                  className={ ({isActive}) => `nav-link ${isActive ? 'nav-link-active' : ''}` }               >
                   {type.name}s
                 </NavLink>{' '}
               </li>
